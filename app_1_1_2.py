@@ -3,7 +3,18 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from matplotlib import rcParams
+from matplotlib import font_manager, rc
 
+import platform
+
+if platform.system() == 'Windows':
+    # 윈도우(로컬) 환경
+    plt.rc('font', family='Malgun Gothic')
+else:
+    # Streamlit Cloud(리눅스) 환경
+    # 기본 설치된 폰트 중 한글을 지원하는 DejaVu Sans 등을 사용하거나
+    # 폰트 경로를 직접 지정하지 않아도 아래 설정으로 마이너스 깨짐을 방지합니다.
+    plt.rcParams['axes.unicode_minus'] = False
 
 # 1) 그래프 내 한글 깨짐 방지를 위한 폰트 설정 [cite: 433, 766]
 def set_korean_font():
